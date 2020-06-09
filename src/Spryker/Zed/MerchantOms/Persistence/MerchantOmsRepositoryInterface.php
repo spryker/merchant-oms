@@ -7,6 +7,8 @@
 
 namespace Spryker\Zed\MerchantOms\Persistence;
 
+use Generated\Shared\Transfer\StateMachineItemTransfer;
+
 interface MerchantOmsRepositoryInterface
 {
     /**
@@ -15,4 +17,11 @@ interface MerchantOmsRepositoryInterface
      * @return \Generated\Shared\Transfer\StateMachineItemTransfer[]
      */
     public function getStateMachineItemsByStateIds(array $stateIds): array;
+
+    /**
+     * @param int $idOrderItem
+     *
+     * @return \Spryker\Zed\MerchantOms\Business\StateMachineState\StateMachineItemTransfer
+     */
+    public function getCurrentState(int $idOrderItem): StateMachineItemTransfer;
 }
