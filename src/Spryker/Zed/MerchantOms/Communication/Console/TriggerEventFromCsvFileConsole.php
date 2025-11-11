@@ -74,11 +74,6 @@ class TriggerEventFromCsvFileConsole extends Console
     protected const TABLE_HEADER_COLUMN_MESSAGE = 'message';
 
     /**
-     * @var \Symfony\Component\Console\Output\ConsoleOutputInterface
-     */
-    protected $output;
-
-    /**
      * @var \Symfony\Component\Console\Helper\Table
      */
     protected $outputTable;
@@ -242,7 +237,10 @@ class TriggerEventFromCsvFileConsole extends Console
             return;
         }
 
-        $table = (new Table($this->output->section()))->setHeaders([
+        /** @phpstan-var \Symfony\Component\Console\Output\ConsoleOutputInterface $output */
+        $output = $this->output;
+
+        $table = (new Table($output->section()))->setHeaders([
             static::TABLE_HEADER_COLUMN_ROW_NUMBER,
             static::TABLE_HEADER_COLUMN_MERCHANT_ORDER_ITEM_REFERENCE,
             static::TABLE_HEADER_COLUMN_MERCHANT_ORDER_ITEM_OMS_EVENT_STATE,
