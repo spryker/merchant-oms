@@ -79,9 +79,6 @@ class TriggerEventFromFileConsoleTest extends Unit
         $this->assertSame($outputCode, $resultCode);
     }
 
-    /**
-     * @return array
-     */
     public function filenameDataProvider(): array
     {
         return [

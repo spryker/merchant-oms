@@ -11,10 +11,5 @@ use Generated\Shared\Transfer\MerchantOrderTransfer;
 
 interface MerchantOrderExpanderInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\MerchantOrderTransfer $merchantOrderTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantOrderTransfer
-     */
     public function expandMerchantOrderWithMerchantOmsData(MerchantOrderTransfer $merchantOrderTransfer): MerchantOrderTransfer;
 }

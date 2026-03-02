@@ -12,11 +12,6 @@ use Generated\Shared\Transfer\MessageTransfer;
 
 class FilePathResolver implements FilePathResolverInterface
 {
-    /**
-     * @param string $filePath
-     *
-     * @return \Generated\Shared\Transfer\FilePathResolverResponseTransfer
-     */
     public function resolveFilePath(string $filePath): FilePathResolverResponseTransfer
     {
         $filePaths = [

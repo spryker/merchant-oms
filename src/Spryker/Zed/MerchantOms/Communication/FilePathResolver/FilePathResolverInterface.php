@@ -11,10 +11,5 @@ use Generated\Shared\Transfer\FilePathResolverResponseTransfer;
 
 interface FilePathResolverInterface
 {
-    /**
-     * @param string $filePath
-     *
-     * @return \Generated\Shared\Transfer\FilePathResolverResponseTransfer
-     */
     public function resolveFilePath(string $filePath): FilePathResolverResponseTransfer;
 }

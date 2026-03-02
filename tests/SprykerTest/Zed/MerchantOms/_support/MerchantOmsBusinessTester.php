@@ -40,12 +40,6 @@ class MerchantOmsBusinessTester extends Actor
      */
     protected const TEST_STATE_MACHINE = 'Test01';
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantTransfer $merchantTransfer
-     * @param string $stateMachine
-     *
-     * @return \Generated\Shared\Transfer\SaveOrderTransfer
-     */
     public function getSaveOrderTransfer(MerchantTransfer $merchantTransfer, string $stateMachine): SaveOrderTransfer
     {
         $this->configureTestStateMachine([$stateMachine]);
@@ -57,9 +51,6 @@ class MerchantOmsBusinessTester extends Actor
         ], $stateMachine);
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\MerchantOrderTransfer
-     */
     public function createMerchantOrderWithItems(): MerchantOrderTransfer
     {
         $merchantTransfer = $this->haveMerchant();

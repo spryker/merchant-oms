@@ -29,11 +29,6 @@ interface MerchantOmsToStateMachineFacadeInterface
      */
     public function triggerEventForItems($eventName, array $stateMachineItems);
 
-    /**
-     * @param \Generated\Shared\Transfer\StateMachineProcessCriteriaTransfer $stateMachineProcessCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\StateMachineProcessTransfer|null
-     */
     public function findStateMachineProcess(
         StateMachineProcessCriteriaTransfer $stateMachineProcessCriteriaTransfer
     ): ?StateMachineProcessTransfer;

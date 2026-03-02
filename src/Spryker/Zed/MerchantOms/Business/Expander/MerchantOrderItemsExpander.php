@@ -23,10 +23,6 @@ class MerchantOrderItemsExpander implements MerchantOrderItemsExpanderInterface
      */
     protected $stateMachineFacade;
 
-    /**
-     * @param \Spryker\Zed\MerchantOms\Persistence\MerchantOmsRepositoryInterface $merchantOmsRepository
-     * @param \Spryker\Zed\MerchantOms\Dependency\Facade\MerchantOmsToStateMachineFacadeInterface $stateMachineFacade
-     */
     public function __construct(
         MerchantOmsRepositoryInterface $merchantOmsRepository,
         MerchantOmsToStateMachineFacadeInterface $stateMachineFacade
@@ -35,11 +31,6 @@ class MerchantOrderItemsExpander implements MerchantOrderItemsExpanderInterface
         $this->stateMachineFacade = $stateMachineFacade;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantOrderItemCollectionTransfer $merchantOrderItemCollectionTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantOrderItemCollectionTransfer
-     */
     public function expandMerchantOrderItemsWithManualEvents(
         MerchantOrderItemCollectionTransfer $merchantOrderItemCollectionTransfer
     ): MerchantOrderItemCollectionTransfer {

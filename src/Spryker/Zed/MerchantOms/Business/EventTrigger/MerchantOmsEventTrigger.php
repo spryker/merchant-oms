@@ -34,11 +34,6 @@ class MerchantOmsEventTrigger implements MerchantOmsEventTriggerInterface
      */
     protected $merchantSalesOrderFacade;
 
-    /**
-     * @param \Spryker\Zed\MerchantOms\Dependency\Facade\MerchantOmsToStateMachineFacadeInterface $stateMachineFacade
-     * @param \Spryker\Zed\MerchantOms\Business\StateMachineProcess\StateMachineProcessReaderInterface $stateMachineProcessReader
-     * @param \Spryker\Zed\MerchantOms\Dependency\Facade\MerchantOmsToMerchantSalesOrderFacadeInterface $merchantSalesOrderFacade
-     */
     public function __construct(
         MerchantOmsToStateMachineFacadeInterface $stateMachineFacade,
         StateMachineProcessReaderInterface $stateMachineProcessReader,
@@ -49,11 +44,6 @@ class MerchantOmsEventTrigger implements MerchantOmsEventTriggerInterface
         $this->merchantSalesOrderFacade = $merchantSalesOrderFacade;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantOmsTriggerRequestTransfer $merchantOmsTriggerRequestTransfer
-     *
-     * @return int
-     */
     public function triggerForNewMerchantOrderItems(MerchantOmsTriggerRequestTransfer $merchantOmsTriggerRequestTransfer): int
     {
         $merchantOmsTriggerRequestTransfer
@@ -79,11 +69,6 @@ class MerchantOmsEventTrigger implements MerchantOmsEventTriggerInterface
         return $transitionCount;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantOmsTriggerRequestTransfer $merchantOmsTriggerRequestTransfer
-     *
-     * @return int
-     */
     public function triggerEventForMerchantOrderItems(MerchantOmsTriggerRequestTransfer $merchantOmsTriggerRequestTransfer): int
     {
         $merchantOmsTriggerRequestTransfer
@@ -106,11 +91,6 @@ class MerchantOmsEventTrigger implements MerchantOmsEventTriggerInterface
         return $transitionCount;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantOmsTriggerRequestTransfer $merchantOmsTriggerRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantOmsTriggerResponseTransfer
-     */
     public function triggerEventForMerchantOrderItem(
         MerchantOmsTriggerRequestTransfer $merchantOmsTriggerRequestTransfer
     ): MerchantOmsTriggerResponseTransfer {
@@ -159,11 +139,6 @@ class MerchantOmsEventTrigger implements MerchantOmsEventTriggerInterface
         return $merchantOmsTriggerResponseTransfer->setIsSuccessful(true)->setMessage('Success.');
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantOrderItemTransfer $merchantOrderItemTransfer
-     *
-     * @return \Generated\Shared\Transfer\StateMachineItemTransfer
-     */
     protected function createStateMachineItem(MerchantOrderItemTransfer $merchantOrderItemTransfer): StateMachineItemTransfer
     {
         return (new StateMachineItemTransfer())

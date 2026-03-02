@@ -23,10 +23,6 @@ class MerchantOrderExpander implements MerchantOrderExpanderInterface
      */
     protected $merchantOmsRepository;
 
-    /**
-     * @param \Spryker\Zed\MerchantOms\Dependency\Facade\MerchantOmsToStateMachineFacadeInterface $stateMachineFacade
-     * @param \Spryker\Zed\MerchantOms\Persistence\MerchantOmsRepositoryInterface $merchantOmsRepository
-     */
     public function __construct(
         MerchantOmsToStateMachineFacadeInterface $stateMachineFacade,
         MerchantOmsRepositoryInterface $merchantOmsRepository
@@ -35,11 +31,6 @@ class MerchantOrderExpander implements MerchantOrderExpanderInterface
         $this->merchantOmsRepository = $merchantOmsRepository;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantOrderTransfer $merchantOrderTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantOrderTransfer
-     */
     public function expandMerchantOrderWithMerchantOmsData(MerchantOrderTransfer $merchantOrderTransfer): MerchantOrderTransfer
     {
         /** @var array<int> $stateMachineItemStateIds */

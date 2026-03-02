@@ -89,9 +89,6 @@ class TriggerEventFromCsvFileConsole extends Console
         ];
     }
 
-    /**
-     * @return void
-     */
     protected function configure(): void
     {
         $this->setName(static::COMMAND_NAME)
@@ -117,12 +114,6 @@ class TriggerEventFromCsvFileConsole extends Console
         parent::configure();
     }
 
-    /**
-     * @param \Symfony\Component\Console\Input\InputInterface $input
-     * @param \Symfony\Component\Console\Output\OutputInterface $output
-     *
-     * @return int
-     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $filePath = $this->resolveFilePath();
@@ -190,9 +181,6 @@ class TriggerEventFromCsvFileConsole extends Console
         return static::CODE_SUCCESS;
     }
 
-    /**
-     * @return string|null
-     */
     protected function resolveFilePath(): ?string
     {
         /** @var string $filePath */
@@ -217,9 +205,6 @@ class TriggerEventFromCsvFileConsole extends Console
         return $filePathResolverResponseTransfer->getFilePath();
     }
 
-    /**
-     * @return int
-     */
     protected function getStartFromOption(): int
     {
         /** @var string|bool|null $option */
@@ -228,9 +213,6 @@ class TriggerEventFromCsvFileConsole extends Console
         return max((int)$option - 1, 0);
     }
 
-    /**
-     * @return void
-     */
     protected function prepareOutputTable(): void
     {
         if (!$this->output->isVerbose()) {
@@ -253,14 +235,6 @@ class TriggerEventFromCsvFileConsole extends Console
         $this->outputTable = $table;
     }
 
-    /**
-     * @param int $rowNumber
-     * @param \Generated\Shared\Transfer\MerchantOmsTriggerRequestTransfer $merchantOmsTriggerRequestTransfer
-     * @param bool $result
-     * @param string|null $message
-     *
-     * @return void
-     */
     protected function logOutput(
         int $rowNumber,
         MerchantOmsTriggerRequestTransfer $merchantOmsTriggerRequestTransfer,

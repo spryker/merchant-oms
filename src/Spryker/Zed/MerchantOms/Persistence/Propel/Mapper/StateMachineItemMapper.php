@@ -13,12 +13,6 @@ use Orm\Zed\StateMachine\Persistence\SpyStateMachineItemStateHistory;
 
 class StateMachineItemMapper
 {
-    /**
-     * @param \Orm\Zed\StateMachine\Persistence\SpyStateMachineItemState $stateMachineItemState
-     * @param \Generated\Shared\Transfer\StateMachineItemTransfer $stateMachineItemTransfer
-     *
-     * @return \Generated\Shared\Transfer\StateMachineItemTransfer
-     */
     public function mapStateMachineItemEntityToStateMachineItemTransfer(
         SpyStateMachineItemState $stateMachineItemState,
         StateMachineItemTransfer $stateMachineItemTransfer
@@ -28,12 +22,6 @@ class StateMachineItemMapper
             ->setStateName($stateMachineItemState->getName());
     }
 
-    /**
-     * @param \Orm\Zed\StateMachine\Persistence\SpyStateMachineItemStateHistory $stateMachineItemStateHistory
-     * @param \Generated\Shared\Transfer\StateMachineItemTransfer $stateMachineItemTransfer
-     *
-     * @return \Generated\Shared\Transfer\StateMachineItemTransfer
-     */
     public function mapStateMachineItemStateHistoryEntityToStateMachineItemTransfer(
         SpyStateMachineItemStateHistory $stateMachineItemStateHistory,
         StateMachineItemTransfer $stateMachineItemTransfer

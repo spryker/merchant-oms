@@ -11,11 +11,6 @@ use Generated\Shared\Transfer\MerchantOrderItemCollectionTransfer;
 
 interface MerchantOrderItemsExpanderInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\MerchantOrderItemCollectionTransfer $merchantOrderItemCollectionTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantOrderItemCollectionTransfer
-     */
     public function expandMerchantOrderItemsWithManualEvents(
         MerchantOrderItemCollectionTransfer $merchantOrderItemCollectionTransfer
     ): MerchantOrderItemCollectionTransfer;

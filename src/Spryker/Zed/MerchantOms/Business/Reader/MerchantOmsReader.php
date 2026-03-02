@@ -16,9 +16,6 @@ class MerchantOmsReader implements MerchantOmsReaderInterface
      */
     protected $merchantOmsRepository;
 
-    /**
-     * @param \Spryker\Zed\MerchantOms\Persistence\MerchantOmsRepositoryInterface $merchantOmsRepository
-     */
     public function __construct(MerchantOmsRepositoryInterface $merchantOmsRepository)
     {
         $this->merchantOmsRepository = $merchantOmsRepository;

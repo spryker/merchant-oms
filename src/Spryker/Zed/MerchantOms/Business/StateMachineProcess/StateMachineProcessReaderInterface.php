@@ -12,19 +12,9 @@ use Generated\Shared\Transfer\StateMachineProcessTransfer;
 
 interface StateMachineProcessReaderInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\MerchantCriteriaTransfer $merchantCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\StateMachineProcessTransfer
-     */
     public function getMerchantOmsProcessByMerchant(
         MerchantCriteriaTransfer $merchantCriteriaTransfer
     ): StateMachineProcessTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantCriteriaTransfer $merchantCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\StateMachineProcessTransfer
-     */
     public function resolveMerchantStateMachineProcess(MerchantCriteriaTransfer $merchantCriteriaTransfer): StateMachineProcessTransfer;
 }

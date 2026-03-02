@@ -33,11 +33,6 @@ class StateMachineProcessReader implements StateMachineProcessReaderInterface
      */
     protected $merchantOmsConfig;
 
-    /**
-     * @param \Spryker\Zed\MerchantOms\MerchantOmsConfig $merchantOmsConfig
-     * @param \Spryker\Zed\MerchantOms\Dependency\Facade\MerchantOmsToMerchantFacadeInterface $merchantFacade
-     * @param \Spryker\Zed\MerchantOms\Dependency\Facade\MerchantOmsToStateMachineFacadeInterface $stateMachineFacade
-     */
     public function __construct(
         MerchantOmsConfig $merchantOmsConfig,
         MerchantOmsToMerchantFacadeInterface $merchantFacade,
@@ -48,11 +43,6 @@ class StateMachineProcessReader implements StateMachineProcessReaderInterface
         $this->merchantOmsConfig = $merchantOmsConfig;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantCriteriaTransfer $merchantCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\StateMachineProcessTransfer
-     */
     public function getMerchantOmsProcessByMerchant(
         MerchantCriteriaTransfer $merchantCriteriaTransfer
     ): StateMachineProcessTransfer {
@@ -64,11 +54,6 @@ class StateMachineProcessReader implements StateMachineProcessReaderInterface
         return $stateMachineProcessTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantCriteriaTransfer $merchantCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\StateMachineProcessTransfer
-     */
     public function resolveMerchantStateMachineProcess(MerchantCriteriaTransfer $merchantCriteriaTransfer): StateMachineProcessTransfer
     {
         $merchantTransfer = $this->getMerchantByCriteria($merchantCriteriaTransfer);

@@ -29,9 +29,6 @@ use Spryker\Zed\MerchantOms\MerchantOmsDependencyProvider;
  */
 class MerchantOmsBusinessFactory extends AbstractBusinessFactory
 {
-    /**
-     * @return \Spryker\Zed\MerchantOms\Business\StateMachineProcess\StateMachineProcessReaderInterface
-     */
     public function createStateMachineProcessReader(): StateMachineProcessReaderInterface
     {
         return new StateMachineProcessReader(
@@ -41,9 +38,6 @@ class MerchantOmsBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantOms\Business\EventTrigger\MerchantOmsEventTriggerInterface
-     */
     public function createMerchantOmsEventTrigger(): MerchantOmsEventTriggerInterface
     {
         return new MerchantOmsEventTrigger(
@@ -53,9 +47,6 @@ class MerchantOmsBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantOms\Business\Expander\MerchantOrderItemsExpanderInterface
-     */
     public function createMerchantOrderItemsExpander(): MerchantOrderItemsExpanderInterface
     {
         return new MerchantOrderItemsExpander(
@@ -64,9 +55,6 @@ class MerchantOmsBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantOms\Business\Expander\MerchantOrderExpanderInterface
-     */
     public function createMerchantOrderExpander(): MerchantOrderExpanderInterface
     {
         return new MerchantOrderExpander(
@@ -75,33 +63,21 @@ class MerchantOmsBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantOms\Business\Reader\MerchantOmsReaderInterface
-     */
     public function createMerchantOmsReader(): MerchantOmsReaderInterface
     {
         return new MerchantOmsReader($this->getRepository());
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantOms\Dependency\Facade\MerchantOmsToStateMachineFacadeInterface
-     */
     public function getStateMachineFacade(): MerchantOmsToStateMachineFacadeInterface
     {
         return $this->getProvidedDependency(MerchantOmsDependencyProvider::FACADE_STATE_MACHINE);
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantOms\Dependency\Facade\MerchantOmsToMerchantFacadeInterface
-     */
     public function getMerchantFacade(): MerchantOmsToMerchantFacadeInterface
     {
         return $this->getProvidedDependency(MerchantOmsDependencyProvider::FACADE_MERCHANT);
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantOms\Dependency\Facade\MerchantOmsToMerchantSalesOrderFacadeInterface
-     */
     public function getMerchantSalesOrderFacade(): MerchantOmsToMerchantSalesOrderFacadeInterface
     {
         return $this->getProvidedDependency(MerchantOmsDependencyProvider::FACADE_MERCHANT_SALES_ORDER);

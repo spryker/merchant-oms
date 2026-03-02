@@ -30,12 +30,6 @@ class MerchantOmsCommunicationTester extends Actor
 {
     use _generated\MerchantOmsCommunicationTesterActions;
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantTransfer $merchantTransfer
-     * @param string $stateMachine
-     *
-     * @return \Generated\Shared\Transfer\SaveOrderTransfer
-     */
     public function getSaveOrderTransfer(MerchantTransfer $merchantTransfer, string $stateMachine): SaveOrderTransfer
     {
         $this->configureTestStateMachine([$stateMachine]);

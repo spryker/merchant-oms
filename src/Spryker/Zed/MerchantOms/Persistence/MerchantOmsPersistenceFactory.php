@@ -36,17 +36,11 @@ class MerchantOmsPersistenceFactory extends AbstractPersistenceFactory
         return $this->getProvidedDependency(MerchantOmsDependencyProvider::PROPEL_QUERY_STATE_MACHINE_ITEM_STATE_HISTORY);
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantOms\Persistence\Propel\Mapper\StateMachineItemMapper
-     */
     public function createStateMachineItemMapper(): StateMachineItemMapper
     {
         return new StateMachineItemMapper();
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantOms\Persistence\Propel\Mapper\MerchantOmsMapper
-     */
     public function createMerchantOmsMapper(): MerchantOmsMapper
     {
         return new MerchantOmsMapper();

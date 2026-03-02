@@ -48,11 +48,6 @@ class MerchantOmsToStateMachineFacadeBridge implements MerchantOmsToStateMachine
         return $this->stateMachineFacade->triggerEventForItems($eventName, $stateMachineItems);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\StateMachineProcessCriteriaTransfer $stateMachineProcessCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\StateMachineProcessTransfer|null
-     */
     public function findStateMachineProcess(
         StateMachineProcessCriteriaTransfer $stateMachineProcessCriteriaTransfer
     ): ?StateMachineProcessTransfer {

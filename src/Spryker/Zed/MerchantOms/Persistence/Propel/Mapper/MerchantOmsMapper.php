@@ -34,12 +34,6 @@ class MerchantOmsMapper
         return $stateMachineItemTransfers;
     }
 
-    /**
-     * @param \Orm\Zed\MerchantSalesOrder\Persistence\SpyMerchantSalesOrderItem $merchantSalesOrderItemEntity
-     * @param \Generated\Shared\Transfer\StateMachineItemTransfer $stateMachineItemTransfer
-     *
-     * @return \Generated\Shared\Transfer\StateMachineItemTransfer
-     */
     protected function mapMerchantSalesOrderItemEntityToStateMachineItemTransfer(
         SpyMerchantSalesOrderItem $merchantSalesOrderItemEntity,
         StateMachineItemTransfer $stateMachineItemTransfer

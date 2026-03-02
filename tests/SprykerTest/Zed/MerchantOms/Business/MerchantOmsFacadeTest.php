@@ -90,9 +90,6 @@ class MerchantOmsFacadeTest extends Unit
      */
     protected MerchantOmsBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -107,9 +104,6 @@ class MerchantOmsFacadeTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testGetStateMachineItemsByStateIdsReturnsCorrectData(): void
     {
         // Arrange
@@ -144,9 +138,6 @@ class MerchantOmsFacadeTest extends Unit
         $this->assertSame((int)$stateMachineItemTransfer->getIdentifier(), (int)$merchantOrderItemTransfer->getIdMerchantOrderItem());
     }
 
-    /**
-     * @return void
-     */
     public function testExpandMerchantOrderWithMerchantOmsDataReturnsCorrectData(): void
     {
         // Arrange
@@ -182,9 +173,6 @@ class MerchantOmsFacadeTest extends Unit
         $this->assertSame($merchantOrderTransfer->getManualEvents(), $expectedManualEvents);
     }
 
-    /**
-     * @return void
-     */
     public function testTriggerEventForMerchantOrderItemReturnsSuccess(): void
     {
         // Arrange
@@ -219,9 +207,6 @@ class MerchantOmsFacadeTest extends Unit
         $this->assertTrue($merchantOmsTriggerResponseTransfer->getIsSuccessful());
     }
 
-    /**
-     * @return void
-     */
     public function testTriggerEventForMerchantOrderItemReturnsFalseWithInvalidItemReference(): void
     {
         // Arrange
@@ -236,9 +221,6 @@ class MerchantOmsFacadeTest extends Unit
         $this->assertFalse($merchantOmsTriggerResponseTransfer->getIsSuccessful());
     }
 
-    /**
-     * @return void
-     */
     public function testGetMerchantOmsProcessByMerchantThrowsExceptionIfMerchantNotFound(): void
     {
         // Arrange
@@ -251,9 +233,6 @@ class MerchantOmsFacadeTest extends Unit
         $this->tester->getFacade()->getMerchantOmsProcessByMerchant(new MerchantCriteriaTransfer());
     }
 
-    /**
-     * @return void
-     */
     public function testGetMerchantOmsProcessByMerchantReturnsStateMachineProcessWithStateNames(): void
     {
         // Arrange
@@ -274,9 +253,6 @@ class MerchantOmsFacadeTest extends Unit
         $this->assertSame(static::TEST_STATE_MACHINE, $stateMachineProcessTransfer->getStateMachineName());
     }
 
-    /**
-     * @return void
-     */
     public function testGetMerchantOmsProcessByMerchantReturnsDefaultStateMachineProcessWithStateNames(): void
     {
         // Arrange
@@ -292,9 +268,6 @@ class MerchantOmsFacadeTest extends Unit
         $this->assertSame(MerchantOmsConfig::MERCHANT_OMS_STATE_MACHINE_NAME, $stateMachineProcessTransfer->getStateMachineName());
     }
 
-    /**
-     * @return void
-     */
     public function testGetMerchantOmsProcessByMerchantReturnsDefaultStateMachineProcessWhenProcessIsNotFoundById(): void
     {
         // Arrange
@@ -353,9 +326,6 @@ class MerchantOmsFacadeTest extends Unit
         return $merchantFacadeMock;
     }
 
-    /**
-     * @return void
-     */
     public function testFindCurrentStateByIdSalesOrderItemReturnsStateForExistingOrderItem(): void
     {
         // Arrange
@@ -387,9 +357,6 @@ class MerchantOmsFacadeTest extends Unit
         $this->assertSame($stateEntity->getName(), $stateMachineItemTransfer->getStateName());
     }
 
-    /**
-     * @return void
-     */
     public function testFindCurrentStateByIdSalesOrderItemReturnsNullForNotExistingOrderItem(): void
     {
         // Arrange
@@ -420,9 +387,6 @@ class MerchantOmsFacadeTest extends Unit
         $this->assertNull($stateMachineItemTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testExpandMerchantOrderItemsWithManualEventsExpandsMerchantOrderItems(): void
     {
         // Arrange
@@ -439,9 +403,6 @@ class MerchantOmsFacadeTest extends Unit
         $this->assertSame(static::TEST_MANUAL_EVENTS, $expandedMerchantOrderItemCollectionTransfer->getMerchantOrderItems()[0]->getManualEvents());
     }
 
-    /**
-     * @return void
-     */
     public function testGetMerchantOrderItemsStateHistory(): void
     {
         // Arrange

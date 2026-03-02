@@ -23,9 +23,6 @@ use Spryker\Zed\MerchantOms\MerchantOmsDependencyProvider;
  */
 class MerchantOmsCommunicationFactory extends AbstractCommunicationFactory
 {
-    /**
-     * @return \Spryker\Zed\MerchantOms\Dependency\Facade\MerchantOmsToMerchantSalesOrderFacadeInterface
-     */
     public function getMerchantSalesOrderFacade(): MerchantOmsToMerchantSalesOrderFacadeInterface
     {
         return $this->getProvidedDependency(MerchantOmsDependencyProvider::FACADE_MERCHANT_SALES_ORDER);
@@ -47,25 +44,16 @@ class MerchantOmsCommunicationFactory extends AbstractCommunicationFactory
         return $this->getProvidedDependency(MerchantOmsDependencyProvider::PLUGINS_PLUGINS_STATE_MACHINE_COMMAND);
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantOms\Dependency\Service\MerchantOmsToUtilDataReaderServiceInterface
-     */
     public function getUtilDataReaderService(): MerchantOmsToUtilDataReaderServiceInterface
     {
         return $this->getProvidedDependency(MerchantOmsDependencyProvider::SERVICE_UTIL_DATA_READER);
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantOms\Communication\HeaderValidator\HeaderValidatorInterface
-     */
     public function createHeaderValidator(): HeaderValidatorInterface
     {
         return new HeaderValidator();
     }
 
-    /**
-     * @return \Spryker\Zed\MerchantOms\Communication\FilePathResolver\FilePathResolverInterface
-     */
     public function createFilePathResolver(): FilePathResolverInterface
     {
         return new FilePathResolver();

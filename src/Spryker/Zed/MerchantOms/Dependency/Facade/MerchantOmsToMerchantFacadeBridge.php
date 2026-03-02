@@ -25,11 +25,6 @@ class MerchantOmsToMerchantFacadeBridge implements MerchantOmsToMerchantFacadeIn
         $this->merchantFacade = $merchantFacade;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantCriteriaTransfer $merchantCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantTransfer|null
-     */
     public function findOne(MerchantCriteriaTransfer $merchantCriteriaTransfer): ?MerchantTransfer
     {
         return $this->merchantFacade->findOne($merchantCriteriaTransfer);

@@ -12,25 +12,10 @@ use Generated\Shared\Transfer\MerchantOmsTriggerResponseTransfer;
 
 interface MerchantOmsEventTriggerInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\MerchantOmsTriggerRequestTransfer $merchantOmsTriggerRequestTransfer
-     *
-     * @return int
-     */
     public function triggerForNewMerchantOrderItems(MerchantOmsTriggerRequestTransfer $merchantOmsTriggerRequestTransfer): int;
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantOmsTriggerRequestTransfer $merchantOmsTriggerRequestTransfer
-     *
-     * @return int
-     */
     public function triggerEventForMerchantOrderItems(MerchantOmsTriggerRequestTransfer $merchantOmsTriggerRequestTransfer): int;
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantOmsTriggerRequestTransfer $merchantOmsTriggerRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\MerchantOmsTriggerResponseTransfer
-     */
     public function triggerEventForMerchantOrderItem(
         MerchantOmsTriggerRequestTransfer $merchantOmsTriggerRequestTransfer
     ): MerchantOmsTriggerResponseTransfer;

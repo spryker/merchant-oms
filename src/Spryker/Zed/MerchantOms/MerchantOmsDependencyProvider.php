@@ -61,11 +61,6 @@ class MerchantOmsDependencyProvider extends AbstractBundleDependencyProvider
      */
     public const SERVICE_UTIL_DATA_READER = 'SERVICE_UTIL_DATA_READER';
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     public function provideBusinessLayerDependencies(Container $container): Container
     {
         $container = parent::provideBusinessLayerDependencies($container);
@@ -77,11 +72,6 @@ class MerchantOmsDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     public function provideCommunicationLayerDependencies(Container $container): Container
     {
         $container = parent::provideCommunicationLayerDependencies($container);
@@ -94,11 +84,6 @@ class MerchantOmsDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     public function providePersistenceLayerDependencies(Container $container): Container
     {
         $container = parent::providePersistenceLayerDependencies($container);
@@ -109,11 +94,6 @@ class MerchantOmsDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addMerchantSalesOrderItemPropelQuery(Container $container): Container
     {
         $container->set(static::PROPEL_QUERY_MERCHANT_SALES_ORDER_ITEM, $container->factory(function () {
@@ -123,11 +103,6 @@ class MerchantOmsDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addStateMachineItemStateHistoryPropelQuery(Container $container): Container
     {
         $container->set(static::PROPEL_QUERY_STATE_MACHINE_ITEM_STATE_HISTORY, $container->factory(function () {
@@ -137,11 +112,6 @@ class MerchantOmsDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addStateMachineFacade(Container $container): Container
     {
         $container->set(static::FACADE_STATE_MACHINE, function (Container $container) {
@@ -151,11 +121,6 @@ class MerchantOmsDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addMerchantFacade(Container $container): Container
     {
         $container->set(static::FACADE_MERCHANT, function (Container $container) {
@@ -165,11 +130,6 @@ class MerchantOmsDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addMerchantSalesOrderFacade(Container $container): Container
     {
         $container->set(static::FACADE_MERCHANT_SALES_ORDER, function (Container $container) {
@@ -179,11 +139,6 @@ class MerchantOmsDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addUtilDataReaderService(Container $container): Container
     {
         $container->set(static::SERVICE_UTIL_DATA_READER, function (Container $container) {
@@ -193,11 +148,6 @@ class MerchantOmsDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addStateMachineConditionPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_STATE_MACHINE_CONDITION, function () {
@@ -207,11 +157,6 @@ class MerchantOmsDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addStateMachineCommandPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_PLUGINS_STATE_MACHINE_COMMAND, function () {
