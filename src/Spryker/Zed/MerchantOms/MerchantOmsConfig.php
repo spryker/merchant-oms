@@ -12,6 +12,8 @@ use Spryker\Zed\Kernel\AbstractBundleConfig;
 class MerchantOmsConfig extends AbstractBundleConfig
 {
     /**
+     * @api
+     *
      * @var string
      */
     public const MERCHANT_OMS_STATE_MACHINE_NAME = 'Merchant';
