@@ -14,6 +14,8 @@ use Spryker\Zed\MerchantOms\Business\Expander\MerchantOrderExpander;
 use Spryker\Zed\MerchantOms\Business\Expander\MerchantOrderExpanderInterface;
 use Spryker\Zed\MerchantOms\Business\Expander\MerchantOrderItemsExpander;
 use Spryker\Zed\MerchantOms\Business\Expander\MerchantOrderItemsExpanderInterface;
+use Spryker\Zed\MerchantOms\Business\Expander\OrderItemMerchantStateExpander;
+use Spryker\Zed\MerchantOms\Business\Expander\OrderItemMerchantStateExpanderInterface;
 use Spryker\Zed\MerchantOms\Business\Reader\MerchantOmsReader;
 use Spryker\Zed\MerchantOms\Business\Reader\MerchantOmsReaderInterface;
 use Spryker\Zed\MerchantOms\Business\StateMachineProcess\StateMachineProcessReader;
@@ -53,6 +55,11 @@ class MerchantOmsBusinessFactory extends AbstractBusinessFactory
             $this->getRepository(),
             $this->getStateMachineFacade(),
         );
+    }
+
+    public function createOrderItemMerchantStateExpander(): OrderItemMerchantStateExpanderInterface
+    {
+        return new OrderItemMerchantStateExpander($this->getRepository());
     }
 
     public function createMerchantOrderExpander(): MerchantOrderExpanderInterface

@@ -8,6 +8,8 @@
 namespace SprykerTest\Zed\MerchantOms;
 
 use Codeception\Actor;
+use Generated\Shared\DataBuilder\MerchantProfileBuilder;
+use Generated\Shared\DataBuilder\QuoteBuilder;
 use Generated\Shared\Transfer\ItemTransfer;
 use Generated\Shared\Transfer\MerchantOrderItemTransfer;
 use Generated\Shared\Transfer\MerchantOrderTransfer;
@@ -49,6 +51,35 @@ class MerchantOmsBusinessTester extends Actor
             ItemTransfer::UNIT_PRICE => 100,
             ItemTransfer::SUM_PRICE => 100,
         ], $stateMachine);
+    }
+
+    public function haveMerchantWithProfile(): MerchantTransfer
+    {
+        return $this->haveMerchant([
+            MerchantTransfer::MERCHANT_PROFILE => (new MerchantProfileBuilder())->build()->toArray(),
+        ]);
+    }
+
+    public function getSaveOrderTransferWithTwoItems(MerchantTransfer $merchantTransfer, string $stateMachine): SaveOrderTransfer
+    {
+        $itemOverride = [
+            ItemTransfer::MERCHANT_REFERENCE => $merchantTransfer->getMerchantReference(),
+            ItemTransfer::UNIT_PRICE => 100,
+            ItemTransfer::SUM_PRICE => 100,
+        ];
+
+        $quoteTransfer = (new QuoteBuilder($itemOverride))
+            ->withStore($itemOverride)
+            ->withItem($itemOverride)
+            ->withAnotherItem($itemOverride)
+            ->withCustomer($itemOverride)
+            ->withTotals()
+            ->withShippingAddress()
+            ->withBillingAddress()
+            ->withCurrency()
+            ->build();
+
+        return $this->haveOrderUsingPreparedQuoteTransfer($quoteTransfer, $stateMachine);
     }
 
     public function createMerchantOrderWithItems(): MerchantOrderTransfer

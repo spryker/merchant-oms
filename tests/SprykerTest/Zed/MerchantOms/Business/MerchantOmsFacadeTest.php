@@ -19,6 +19,7 @@ use Generated\Shared\Transfer\StateMachineItemStateTransfer;
 use Generated\Shared\Transfer\StateMachineItemTransfer;
 use Generated\Shared\Transfer\StateMachineProcessTransfer;
 use Spryker\Zed\MerchantOms\Business\Exception\MerchantNotFoundException;
+use Spryker\Zed\MerchantOms\Business\MerchantOmsBusinessFactory;
 use Spryker\Zed\MerchantOms\Dependency\Facade\MerchantOmsToMerchantFacadeBridge;
 use Spryker\Zed\MerchantOms\Dependency\Facade\MerchantOmsToMerchantFacadeInterface;
 use Spryker\Zed\MerchantOms\Dependency\Facade\MerchantOmsToStateMachineFacadeBridge;
@@ -355,6 +356,69 @@ class MerchantOmsFacadeTest extends Unit
         // Assert
         $this->assertInstanceOf(StateMachineItemTransfer::class, $stateMachineItemTransfer);
         $this->assertSame($stateEntity->getName(), $stateMachineItemTransfer->getStateName());
+    }
+
+    public function testExpandOrderItemsWithMerchantStateAssignsOwnStateToEachOrderItem(): void
+    {
+        // Arrange
+        $merchantTransfer = $this->tester->haveMerchantWithProfile();
+        $saveOrderTransfer = $this->tester->getSaveOrderTransferWithTwoItems($merchantTransfer, static::TEST_STATE_MACHINE);
+        $merchantOrderTransfer = $this->tester->haveMerchantOrder([
+            MerchantOrderTransfer::ID_ORDER => $saveOrderTransfer->getIdSalesOrder(),
+        ]);
+        $processEntity = $this->tester->haveStateMachineProcess();
+
+        /** @var \Generated\Shared\Transfer\ItemTransfer $firstItemTransfer */
+        $firstItemTransfer = $saveOrderTransfer->getOrderItems()->offsetGet(0);
+        /** @var \Generated\Shared\Transfer\ItemTransfer $secondItemTransfer */
+        $secondItemTransfer = $saveOrderTransfer->getOrderItems()->offsetGet(1);
+
+        $expectedStateNames = [];
+        foreach ([$firstItemTransfer, $secondItemTransfer] as $itemTransfer) {
+            $stateEntity = $this->tester->haveStateMachineItemState([
+                StateMachineItemStateTransfer::FK_STATE_MACHINE_PROCESS => $processEntity->getIdStateMachineProcess(),
+            ]);
+            $this->tester->haveMerchantOrderItem([
+                MerchantOrderItemTransfer::FK_STATE_MACHINE_ITEM_STATE => $stateEntity->getIdStateMachineItemState(),
+                MerchantOrderItemTransfer::ID_MERCHANT_ORDER => $merchantOrderTransfer->getIdMerchantOrder(),
+                MerchantOrderItemTransfer::ID_ORDER_ITEM => $itemTransfer->getIdSalesOrderItem(),
+            ]);
+            $expectedStateNames[$itemTransfer->getIdSalesOrderItemOrFail()] = $stateEntity->getName();
+        }
+
+        // Act
+        $itemTransfers = (new MerchantOmsBusinessFactory())
+            ->createOrderItemMerchantStateExpander()
+            ->expandOrderItemsWithMerchantState([$firstItemTransfer, $secondItemTransfer]);
+
+        // Assert
+        $this->assertCount(2, $itemTransfers);
+        foreach ($itemTransfers as $itemTransfer) {
+            $this->assertSame(
+                $expectedStateNames[$itemTransfer->getIdSalesOrderItemOrFail()],
+                $itemTransfer->getMerchantStateMachineItemOrFail()->getStateName(),
+            );
+        }
+    }
+
+    public function testExpandOrderItemsWithMerchantStateSetsEmptyStateForOrderItemWithoutMerchantOrderItem(): void
+    {
+        // Arrange
+        $merchantTransfer = $this->tester->haveMerchantWithProfile();
+        $saveOrderTransfer = $this->tester->getSaveOrderTransfer($merchantTransfer, static::TEST_STATE_MACHINE);
+        /** @var \Generated\Shared\Transfer\ItemTransfer $itemTransfer */
+        $itemTransfer = $saveOrderTransfer->getOrderItems()->offsetGet(0);
+
+        // Act
+        $itemTransfers = (new MerchantOmsBusinessFactory())
+            ->createOrderItemMerchantStateExpander()
+            ->expandOrderItemsWithMerchantState([$itemTransfer]);
+
+        // Assert
+        $this->assertCount(1, $itemTransfers);
+        // An empty transfer marks the item as expanded, which is what keeps consumers from falling back to a per-item read.
+        $this->assertInstanceOf(StateMachineItemTransfer::class, $itemTransfers[0]->getMerchantStateMachineItem());
+        $this->assertNull($itemTransfers[0]->getMerchantStateMachineItemOrFail()->getStateName());
     }
 
     public function testFindCurrentStateByIdSalesOrderItemReturnsNullForNotExistingOrderItem(): void

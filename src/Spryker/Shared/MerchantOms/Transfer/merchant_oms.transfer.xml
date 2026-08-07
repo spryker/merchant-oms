@@ -21,6 +21,11 @@
         <property name="stateHistory" type="StateMachineItem[]" singular="stateHistory"/>
     </transfer>
 
+    <transfer name="Item">
+        <property name="idSalesOrderItem" type="int"/>
+        <property name="merchantStateMachineItem" type="StateMachineItem" strict="true"/>
+    </transfer>
+
     <transfer name="StateMachineProcess">
         <property name="processName" type="string"/>
         <property name="stateMachineName" type="string"/>

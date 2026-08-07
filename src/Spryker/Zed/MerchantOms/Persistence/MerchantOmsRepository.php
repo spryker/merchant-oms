@@ -45,6 +45,46 @@ class MerchantOmsRepository extends AbstractRepository implements MerchantOmsRep
      * @module StateMachine
      * @module MerchantSalesOrder
      *
+     * @param array<int> $salesOrderItemIds
+     *
+     * @return array<int, \Generated\Shared\Transfer\StateMachineItemTransfer>
+     */
+    public function getCurrentStatesIndexedByIdSalesOrderItem(array $salesOrderItemIds): array
+    {
+        if ($salesOrderItemIds === []) {
+            return [];
+        }
+
+        /** @var \Orm\Zed\MerchantSalesOrder\Persistence\SpyMerchantSalesOrderItemQuery<\Orm\Zed\MerchantSalesOrder\Persistence\SpyMerchantSalesOrderItem> $merchantSalesOrderItemQuery */
+        $merchantSalesOrderItemQuery = $this->getFactory()
+            ->getMerchantSalesOrderItemPropelQuery()
+            ->filterByFkSalesOrderItem_In($salesOrderItemIds)
+            ->joinWithStateMachineItemState();
+
+        $stateMachineItemMapper = $this->getFactory()->createStateMachineItemMapper();
+
+        $stateMachineItemTransfers = [];
+        foreach ($merchantSalesOrderItemQuery->find() as $merchantSalesOrderItemEntity) {
+            /** @var \Orm\Zed\StateMachine\Persistence\SpyStateMachineItemState|null $stateMachineItemStateEntity */
+            $stateMachineItemStateEntity = $merchantSalesOrderItemEntity->getStateMachineItemState();
+            if ($stateMachineItemStateEntity === null) {
+                continue;
+            }
+
+            $stateMachineItemTransfers[$merchantSalesOrderItemEntity->getFkSalesOrderItem()] = $stateMachineItemMapper
+                ->mapStateMachineItemEntityToStateMachineItemTransfer(
+                    $stateMachineItemStateEntity,
+                    new StateMachineItemTransfer(),
+                );
+        }
+
+        return $stateMachineItemTransfers;
+    }
+
+    /**
+     * @module StateMachine
+     * @module MerchantSalesOrder
+     *
      * @param int $idSalesOrderItem
      *
      * @return \Generated\Shared\Transfer\StateMachineItemTransfer|null
